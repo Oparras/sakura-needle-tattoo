@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf7f5;
+  --foreground: #1f1e1e;
+  --muted: #6f6666;
+  --sakura: #f4c7cd;
+  --sakura-strong: #e7aeb8;
+  --soft-border: #eadddd;
+  --warm-white: #fffdfc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-sakura: var(--sakura);
+  --color-sakura-strong: var(--sakura-strong);
+  --color-soft-border: var(--soft-border);
+  --color-warm-white: var(--warm-white);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--soft-border);
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(231, 174, 184, 0.4);
+}
+
+a,
+button,
+summary {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    opacity 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+:where(a, button, summary):focus-visible {
+  outline: 2px solid var(--sakura-strong);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgba(244, 199, 205, 0.22);
+}
+
+.font-display {
+  font-family: var(--font-cormorant), "Times New Roman", serif;
+}
+
+.section-anchor {
+  scroll-margin-top: 6rem;
+}
+
+.petal-grid {
+  background-image:
+    radial-gradient(circle at 18% 18%, rgba(244, 199, 205, 0.28) 0, transparent 18%),
+    radial-gradient(circle at 84% 24%, rgba(244, 199, 205, 0.2) 0, transparent 14%),
+    radial-gradient(circle at 20% 82%, rgba(231, 174, 184, 0.14) 0, transparent 16%);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
 }
