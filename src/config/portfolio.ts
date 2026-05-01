@@ -1,68 +1,111 @@
 export type PortfolioFeedMode = "manual" | "external";
+export type PortfolioItemType = "post" | "reel";
 
 export type PortfolioItem = {
   title: string;
-  caption: string;
+  href: string;
+  image: string;
   alt: string;
-  imageSrc?: string;
-  instagramEmbedUrl?: string;
+  type: PortfolioItemType;
   featured?: boolean;
+};
+
+export type FeaturedInstagramEmbedConfig = {
+  enabled: boolean;
+  href: string;
+  type: PortfolioItemType;
+  title: string;
 };
 
 export const INSTAGRAM_URL = "https://instagram.com/sakuraneedletattoo";
 export const INSTAGRAM_LABEL = "@sakuraneedletattoo";
 
 /*
-  Cambia `mode` a "external" si prefieres mostrar solo el acceso al perfil
-  de Instagram. Para usar imágenes reales en modo manual, añade archivos a
-  /public/portfolio y completa `imageSrc` con rutas como "/portfolio/01.jpg".
+  Añade imágenes reales en /public/works/ manteniendo estos nombres:
+  - /works/work-01.jpg
+  - /works/work-02.jpg
+  - ...
+  - /works/work-08.jpg
+
+  Si una imagen todavía no existe, la galería mostrará automáticamente un
+  placeholder con estética Sakura sin romper el layout.
+
+  Cambia `mode` a "external" si prefieres mostrar una selección más ligera
+  y derivar el tráfico directamente al perfil de Instagram.
 */
 export const portfolioConfig: {
   mode: PortfolioFeedMode;
   instagramUrl: string;
   instagramLabel: string;
   items: PortfolioItem[];
+  featuredEmbed: FeaturedInstagramEmbedConfig;
 } = {
   mode: "manual",
   instagramUrl: INSTAGRAM_URL,
   instagramLabel: INSTAGRAM_LABEL,
   items: [
     {
-      title: "Pieza protagonista",
-      caption: "Ideal para una imagen vertical con presencia, calma y detalle.",
-      alt: "Fotografía principal de un tatuaje realizado por Sakura Needle Tattoo",
+      title: "Pieza 01",
+      href: "https://www.instagram.com/p/DVojWmaDBUm/",
+      image: "/works/work-01.jpg",
+      alt: "Pieza reciente de Sakura Needle Tattoo publicada en Instagram",
+      type: "post",
       featured: true,
-      // imageSrc: "/portfolio/hero-piece.jpg",
     },
     {
-      title: "Detalle cercano",
-      caption: "Perfecto para primeros planos con luz suave y fondo limpio.",
-      alt: "Detalle cercano de un tatuaje de Sakura Needle Tattoo",
-      // imageSrc: "/portfolio/detail-close-up.jpg",
+      title: "Pieza 02",
+      href: "https://www.instagram.com/p/DXWbRw6DJDs/",
+      image: "/works/work-02.jpg",
+      alt: "Detalle de tatuaje reciente de Sakura Needle Tattoo",
+      type: "post",
     },
     {
-      title: "Composición delicada",
-      caption: "Pensado para mostrar una pieza equilibrada y cuidada.",
-      alt: "Composición delicada de tatuaje en el portfolio de Sakura Needle Tattoo",
-      // imageSrc: "/portfolio/composition.jpg",
+      title: "Pieza 03",
+      href: "https://www.instagram.com/p/DXHEBmaDBIA/?img_index=1",
+      image: "/works/work-03.jpg",
+      alt: "Selección reciente de tatuaje de Sakura Needle Tattoo",
+      type: "post",
     },
     {
-      title: "Mini tattoo",
-      caption: "Un espacio listo para piezas pequeñas, sutiles y elegantes.",
-      alt: "Mini tattoo realizado por Sakura Needle Tattoo",
-      // imageSrc: "/portfolio/mini-tattoo.jpg",
+      title: "Pieza 04",
+      href: "https://www.instagram.com/p/DXCPuGDDFF2/",
+      image: "/works/work-04.jpg",
+      alt: "Trabajo reciente de Sakura Needle Tattoo enlazado a Instagram",
+      type: "post",
     },
     {
-      title: "Ambiente de estudio",
-      caption: "Úsalo para retratos, manos, materiales o momentos de sesión.",
-      alt: "Imagen del ambiente de estudio de Sakura Needle Tattoo",
-      // imageSrc: "/portfolio/studio-moment.jpg",
+      title: "Pieza 05",
+      href: "https://www.instagram.com/p/DWjExpBjNmv/?img_index=1",
+      image: "/works/work-05.jpg",
+      alt: "Tatuaje delicado de Sakura Needle Tattoo publicado en Instagram",
+      type: "post",
     },
     {
-      title: "Resultado final",
-      caption: "Listo para placement, tatuaje cicatrizado o fotografía editorial.",
-      alt: "Resultado final de un tatuaje realizado por Sakura Needle Tattoo",
-      // imageSrc: "/portfolio/final-piece.jpg",
+      title: "Pieza 06",
+      href: "https://www.instagram.com/p/DWTiZ3hDF0D/?img_index=1",
+      image: "/works/work-06.jpg",
+      alt: "Fotografía de tatuaje reciente de Sakura Needle Tattoo",
+      type: "post",
+    },
+    {
+      title: "Pieza 07",
+      href: "https://www.instagram.com/p/DWOVrbEDGTs/?img_index=1",
+      image: "/works/work-07.jpg",
+      alt: "Publicación de tatuaje de Sakura Needle Tattoo en Instagram",
+      type: "post",
+    },
+    {
+      title: "Pieza 08",
+      href: "https://www.instagram.com/p/DV4H5iwjHRs/",
+      image: "/works/work-08.jpg",
+      alt: "Reel reciente de Sakura Needle Tattoo en Instagram",
+      type: "reel",
     },
   ],
+  featuredEmbed: {
+    enabled: false,
+    href: "https://www.instagram.com/p/DV4H5iwjHRs/",
+    type: "reel",
+    title: "Reel destacado",
+  },
 };

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Container } from "@/components/container";
 import { PetalCluster } from "@/components/petal-cluster";
+import { SakuraBranch } from "@/components/sakura-branch";
 import { SectionHeading } from "@/components/section-heading";
 import { siteConfig } from "@/config/site";
 
@@ -91,7 +92,9 @@ export function ContactSection() {
       id="contacto"
       className="section-anchor relative overflow-hidden pb-24 pt-20"
     >
-      <PetalCluster className="-left-10 top-10 hidden opacity-60 lg:block" />
+      <PetalCluster className="-left-10 top-10 hidden opacity-55 lg:block" />
+      <SakuraBranch className="right-3 bottom-12 hidden opacity-38 xl:block" mirrored />
+
       <Container className="grid gap-10 lg:grid-cols-[1fr_0.92fr]">
         <div>
           <SectionHeading
@@ -128,7 +131,8 @@ export function ContactSection() {
         </div>
 
         <aside className="petal-grid rounded-[2rem] border border-soft-border bg-white/80 p-5 shadow-[0_24px_70px_rgba(136,103,110,0.07)] sm:p-6">
-          <div className="rounded-[1.5rem] border border-soft-border bg-warm-white p-6">
+          <div className="relative overflow-hidden rounded-[1.5rem] border border-soft-border bg-warm-white p-6">
+            <SakuraBranch className="right-0 top-0 w-28 opacity-35" mirrored />
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-muted">
               Antes de tu cita
             </p>

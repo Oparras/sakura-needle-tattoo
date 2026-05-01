@@ -13,11 +13,11 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-soft-border/80 bg-[rgba(255,253,252,0.82)] backdrop-blur-xl">
-      <Container className="flex items-center justify-between gap-3 py-2.5 sm:gap-4 sm:py-3">
+      <Container className="relative grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 py-2.5 sm:gap-4 sm:py-3 lg:flex lg:justify-between">
         <a
           href="#inicio"
           aria-label={`Ir al inicio de ${BRAND_NAME}`}
-          className="flex min-w-0 max-w-[calc(100%-4.25rem)] items-center gap-2.5 overflow-hidden sm:max-w-none sm:gap-3"
+          className="flex min-w-0 max-w-[12.25rem] items-center gap-2.5 overflow-hidden pr-14 sm:max-w-none sm:pr-2 sm:gap-3"
           onClick={() => setMenuOpen(false)}
         >
           <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-soft-border bg-white shadow-[0_12px_30px_rgba(110,92,92,0.08)] sm:h-12 sm:w-12">
@@ -69,7 +69,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className="inline-flex h-11 w-11 shrink-0 items-center justify-center gap-2 rounded-full border border-soft-border bg-white/88 text-sm font-semibold text-foreground shadow-[0_10px_24px_rgba(87,71,71,0.05)] hover:border-sakura-strong hover:bg-white sm:h-auto sm:w-auto sm:px-3 sm:py-2.5 lg:hidden"
+            className="absolute right-4 top-1/2 z-10 inline-flex h-11 w-11 shrink-0 -translate-y-1/2 items-center justify-center gap-2 rounded-full border border-transparent bg-foreground text-sm font-semibold text-warm-white shadow-[0_10px_24px_rgba(87,71,71,0.14)] hover:-translate-y-[52%] hover:bg-[#2b2929] sm:static sm:h-auto sm:w-auto sm:translate-y-0 sm:border-soft-border sm:bg-white/88 sm:px-3 sm:py-2.5 sm:text-foreground sm:shadow-[0_10px_24px_rgba(87,71,71,0.05)] sm:hover:border-sakura-strong sm:hover:bg-white sm:hover:translate-y-0 lg:hidden"
             aria-label={menuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"

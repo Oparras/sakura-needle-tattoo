@@ -14,7 +14,7 @@ export const siteConfig = {
   logoAlt:
     "Logo de Sakura Needle Tattoo con flores Sakura y una máquina de tatuar delicada",
   description:
-    "Tatuajes personalizados en Madrid con una propuesta delicada, limpia y serena de cita previa.",
+    "Tatuajes personalizados con una propuesta delicada, limpia y serena de cita previa.",
   instagramUrl: INSTAGRAM_URL,
   instagramLabel: INSTAGRAM_LABEL,
   whatsappUrl: "https://wa.me/34612345678",
@@ -33,8 +33,8 @@ export const siteConfig = {
 export const navigationItems = [
   { label: "Inicio", href: "#inicio" },
   { label: "Sobre mí", href: "#sobre-mi" },
-  { label: "Servicios", href: "#servicios" },
   { label: "Trabajos", href: "#trabajos" },
+  { label: "Servicios", href: "#servicios" },
   { label: "Reservar", href: "#reservar" },
   { label: "FAQ", href: "#faq" },
   { label: "Contacto", href: "#contacto" },

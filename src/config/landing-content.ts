@@ -15,7 +15,7 @@ export type FaqItem = {
 };
 
 export const heroContent = {
-  badge: "Estudio boutique en Madrid",
+  badge: "Estudio de tatuaje personalizado",
   title: "Tatuajes personalizados con delicadeza y detalle",
   subtitle: "Diseño cuidado · Cita previa · Trato cercano",
   description:
@@ -45,19 +45,19 @@ export const services: ServiceItem[] = [
   {
     title: "Tatuajes",
     description:
-      "Piezas cuidadas y personalizadas, creadas para acompañarte con naturalidad.",
+      "Piezas cuidadas y personalizadas, pensadas para acompañarte siempre.",
     accent: "01",
   },
   {
     title: "Diseño personalizado",
     description:
-      "Tu idea se desarrolla con calma para encontrar una composición armónica y propia.",
+      "Desarrollo de una idea única adaptada a tu historia, tu zona y tu estilo.",
     accent: "02",
   },
   {
     title: "Mini tattoos",
     description:
-      "Opciones pequeñas, sutiles y elegantes para quienes buscan algo discreto.",
+      "Tatuajes pequeños y delicados para quienes buscan una pieza sutil y especial.",
     accent: "03",
   },
 ];
