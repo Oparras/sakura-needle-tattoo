@@ -9,7 +9,7 @@ export function FaqSection() {
         <SectionHeading
           eyebrow="FAQ"
           title="Respuestas breves para resolver las dudas más habituales"
-          description="El acordeón está listo para editar políticas, tiempos, señal o recomendaciones antes de publicar la web."
+          description="Información esencial antes de reservar, preparar la cita y cuidar tu tatuaje con tranquilidad."
           align="center"
         />
 

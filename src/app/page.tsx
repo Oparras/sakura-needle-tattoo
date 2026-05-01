@@ -24,9 +24,9 @@ export default function Home() {
         <main id="contenido">
           <HeroSection />
           <AboutSection />
+          <WorksSection />
           <ServicesSection />
           <ProcessSection />
-          <WorksSection />
           <BookingSection />
           <FaqSection />
           <ContactSection />

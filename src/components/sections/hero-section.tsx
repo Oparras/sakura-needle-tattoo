@@ -6,9 +6,9 @@ import { heroContent } from "@/config/landing-content";
 import { siteConfig } from "@/config/site";
 
 const heroHighlights = [
-  "Diseño a medida",
-  "Ambiente íntimo",
-  "Cuidado experto",
+  "Trato cercano",
+  "Espacio sereno",
+  "Detalle cuidado",
 ] as const;
 
 export function HeroSection() {
@@ -75,7 +75,7 @@ export function HeroSection() {
               />
             </div>
             <div className="mt-4 grid grid-cols-3 gap-2.5 sm:mt-5 sm:gap-3">
-              {["Fine line", "Floral", "Custom"].map((label) => (
+              {["Delicadeza", "Diseño propio", "Cita previa"].map((label) => (
                 <div
                   key={label}
                   className="rounded-[1.1rem] border border-soft-border bg-white px-3 py-2.5 text-center text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-muted sm:rounded-[1.2rem] sm:px-4 sm:py-3 sm:text-xs sm:tracking-[0.22em]"

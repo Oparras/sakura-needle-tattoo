@@ -13,11 +13,11 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-soft-border/80 bg-[rgba(255,253,252,0.82)] backdrop-blur-xl">
-      <Container className="relative flex items-center justify-between gap-3 py-2.5 sm:gap-4 sm:py-3">
+      <Container className="flex items-center justify-between gap-3 py-2.5 sm:gap-4 sm:py-3">
         <a
           href="#inicio"
           aria-label={`Ir al inicio de ${BRAND_NAME}`}
-          className="flex min-w-0 flex-1 items-center gap-2.5 overflow-hidden sm:gap-3"
+          className="flex min-w-0 max-w-[calc(100%-4.25rem)] items-center gap-2.5 overflow-hidden sm:max-w-none sm:gap-3"
           onClick={() => setMenuOpen(false)}
         >
           <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-soft-border bg-white shadow-[0_12px_30px_rgba(110,92,92,0.08)] sm:h-12 sm:w-12">
@@ -55,49 +55,51 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="hidden lg:flex">
-          <ButtonLink
-            href={siteConfig.booking.url}
-            target="_blank"
-            aria-label={`${siteConfig.booking.ctaLabel} en una nueva pestaña`}
-            className="min-h-11 px-5"
-          >
-            {siteConfig.booking.ctaLabel}
-          </ButtonLink>
-        </div>
+        <div className="shrink-0 flex items-center gap-3">
+          <div className="hidden lg:flex">
+            <ButtonLink
+              href={siteConfig.booking.url}
+              target="_blank"
+              aria-label={`${siteConfig.booking.ctaLabel} en una nueva pestaña`}
+              className="min-h-11 px-5"
+            >
+              {siteConfig.booking.ctaLabel}
+            </ButtonLink>
+          </div>
 
-        <button
-          type="button"
-          className="absolute right-4 top-1/2 inline-flex h-11 w-11 shrink-0 -translate-y-1/2 items-center justify-center gap-2 rounded-full border border-soft-border bg-white/88 text-sm font-semibold text-foreground shadow-[0_10px_24px_rgba(87,71,71,0.05)] hover:border-sakura-strong hover:bg-white sm:static sm:h-auto sm:w-auto sm:translate-y-0 sm:px-3 sm:py-2.5 lg:hidden"
-          aria-label={menuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span aria-hidden="true" className="space-y-1">
-            <span
-              className={cn(
-                "block h-px w-4 bg-current transition-transform",
-                menuOpen && "translate-y-[5px] rotate-45",
-              )}
-            />
-            <span
-              className={cn(
-                "block h-px w-4 bg-current transition-opacity",
-                menuOpen && "opacity-0",
-              )}
-            />
-          <span
-            className={cn(
-                "block h-px w-4 bg-current transition-transform",
-                menuOpen && "-translate-y-[5px] -rotate-45",
-              )}
-            />
-          </span>
-          <span className="hidden sm:inline">
-            {menuOpen ? "Cerrar" : "Menú"}
-          </span>
-        </button>
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center gap-2 rounded-full border border-soft-border bg-white/88 text-sm font-semibold text-foreground shadow-[0_10px_24px_rgba(87,71,71,0.05)] hover:border-sakura-strong hover:bg-white sm:h-auto sm:w-auto sm:px-3 sm:py-2.5 lg:hidden"
+            aria-label={menuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span aria-hidden="true" className="flex flex-col gap-1">
+              <span
+                className={cn(
+                  "block h-px w-4 bg-current transition-transform",
+                  menuOpen && "translate-y-[5px] rotate-45",
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-px w-4 bg-current transition-opacity",
+                  menuOpen && "opacity-0",
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-px w-4 bg-current transition-transform",
+                  menuOpen && "-translate-y-[5px] -rotate-45",
+                )}
+              />
+            </span>
+            <span className="hidden sm:inline">
+              {menuOpen ? "Cerrar" : "Menú"}
+            </span>
+          </button>
+        </div>
       </Container>
 
       <div

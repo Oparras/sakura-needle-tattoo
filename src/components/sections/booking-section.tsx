@@ -1,6 +1,7 @@
 import { BookingEmbed } from "@/components/booking-embed";
 import { ButtonLink } from "@/components/button-link";
 import { Container } from "@/components/container";
+import { PetalCluster } from "@/components/petal-cluster";
 import { SectionHeading } from "@/components/section-heading";
 import { bookingHighlights } from "@/config/landing-content";
 import { type BookingMode, siteConfig } from "@/config/site";
@@ -12,14 +13,16 @@ export function BookingSection() {
   return (
     <section
       id="reservar"
-      className="section-anchor border-y border-soft-border/70 bg-white/60 py-20 sm:py-24"
+      className="section-anchor relative overflow-hidden border-y border-soft-border/70 bg-white/60 py-20 sm:py-24"
     >
+      <PetalCluster className="-left-10 bottom-4 hidden opacity-70 lg:block" />
+      <PetalCluster className="right-0 top-10 hidden scale-[0.95] opacity-55 md:block" />
       <Container className="grid items-start gap-10 lg:grid-cols-[0.92fr_1.08fr]">
         <div>
           <SectionHeading
             eyebrow="Reserva"
-            title="Una llamada a la acción clara, suave y lista para convertir"
-            description="La landing ya abre la plataforma externa en una nueva pestaña y deja preparado el espacio para integrar el calendario en la propia página."
+            title="Reserva tu cita y empecemos a dar forma a tu idea"
+            description="La agenda puede abrirse en una nueva pestaña o integrarse aquí más adelante sin rehacer la sección."
           />
 
           <div className="mt-8 space-y-4">
@@ -43,8 +46,8 @@ export function BookingSection() {
                 {siteConfig.booking.ctaLabel}
               </ButtonLink>
               <p className="text-sm leading-7 text-muted">
-                La reserva se abre en una nueva pestaña para mantener la landing
-                ligera en esta primera publicación.
+                La reserva se abre en una nueva pestaña para mantener esta
+                primera versión ligera, clara y fácil de actualizar.
               </p>
             </div>
           ) : (

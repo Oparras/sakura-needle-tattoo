@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Container } from "@/components/container";
+import { PetalCluster } from "@/components/petal-cluster";
 import { SectionHeading } from "@/components/section-heading";
 import { siteConfig } from "@/config/site";
 
@@ -56,7 +57,7 @@ type ContactCardProps = {
 
 function ContactCard({ icon, title, value, href }: ContactCardProps) {
   const content = (
-    <div className="rounded-[1.6rem] border border-soft-border bg-white px-5 py-5 shadow-[0_16px_40px_rgba(136,103,110,0.05)]">
+    <div className="rounded-[1.6rem] border border-soft-border bg-white px-5 py-5 shadow-[0_16px_40px_rgba(136,103,110,0.05)] transition-transform duration-200 hover:-translate-y-0.5 hover:border-sakura-strong/70 hover:shadow-[0_20px_44px_rgba(136,103,110,0.08)]">
       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sakura/35 text-foreground">
         {icon}
       </div>
@@ -77,7 +78,7 @@ function ContactCard({ icon, title, value, href }: ContactCardProps) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${title}: ${value}`}
-      className="block"
+      className="block rounded-[1.6rem]"
     >
       {content}
     </a>
@@ -86,13 +87,17 @@ function ContactCard({ icon, title, value, href }: ContactCardProps) {
 
 export function ContactSection() {
   return (
-    <section id="contacto" className="section-anchor pb-24 pt-20">
+    <section
+      id="contacto"
+      className="section-anchor relative overflow-hidden pb-24 pt-20"
+    >
+      <PetalCluster className="-left-10 top-10 hidden opacity-60 lg:block" />
       <Container className="grid gap-10 lg:grid-cols-[1fr_0.92fr]">
         <div>
           <SectionHeading
             eyebrow="Contacto"
-            title="Canales claros para conversar, resolver dudas y reservar"
-            description="Todos los datos de contacto son placeholders editables y viven en un único archivo de configuración para poder cambiarlos rápido."
+            title="Un espacio cercano para consultar, conversar y reservar"
+            description="Instagram, WhatsApp y email para que el contacto se sienta simple, directo y cuidado."
           />
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -125,21 +130,20 @@ export function ContactSection() {
         <aside className="petal-grid rounded-[2rem] border border-soft-border bg-white/80 p-5 shadow-[0_24px_70px_rgba(136,103,110,0.07)] sm:p-6">
           <div className="rounded-[1.5rem] border border-soft-border bg-warm-white p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-muted">
-              Nota editorial
+              Antes de tu cita
             </p>
             <h3 className="mt-4 font-display text-3xl leading-[0.95] tracking-[-0.04em] text-foreground sm:text-4xl">
               Un cierre cálido, limpio y profesional
             </h3>
             <p className="mt-4 text-base leading-8 text-muted">
-              Esta columna secundaria puede usarse para horario, recordatorio
-              sobre cita previa, dirección detallada, cuidados o cualquier mensaje
-              de confianza antes de la reserva.
+              Este espacio puede recoger horario, recordatorios de cita previa,
+              cuidados o cualquier mensaje de confianza antes de reservar.
             </p>
             <div className="mt-6 space-y-3">
               {[
                 "Cita previa y seguimiento personalizado.",
                 "Espacio para condiciones de señal o política de cambios.",
-                "Bloque perfecto para un último CTA o microcopy de marca.",
+                "Un último gesto de confianza antes de la reserva.",
               ].map((item) => (
                 <div
                   key={item}

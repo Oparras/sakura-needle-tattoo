@@ -20,15 +20,15 @@ export const metadata: Metadata = {
     canonical: siteConfig.siteUrl,
   },
   title: {
-    default: `${BRAND_NAME} | Tatuajes fine line y florales`,
+    default: `${BRAND_NAME} | Tatuajes personalizados en Madrid`,
     template: `%s | ${BRAND_NAME}`,
   },
   description: siteConfig.description,
   keywords: [
-    "tatuadora fine line",
-    "tatuajes florales",
-    "tatuajes minimalistas",
-    "fine line tattoo",
+    "tatuajes personalizados Madrid",
+    "tatuadora Madrid",
+    "estudio boutique tattoo",
+    "mini tattoos Madrid",
     "Sakura Needle Tattoo",
   ],
   applicationName: BRAND_NAME,
@@ -41,9 +41,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: `${BRAND_NAME} | Tatuajes delicados, florales y personalizados`,
-    description:
-      "Descubre una propuesta boutique de fine line tattoo, floral tattoo y diseño personalizado con reserva lista para integrar.",
+    title: `${BRAND_NAME} | Tatuajes personalizados en Madrid`,
+    description: siteConfig.description,
     type: "website",
     locale: "es_ES",
     siteName: BRAND_NAME,
@@ -59,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${BRAND_NAME} | Fine line tattoo`,
+    title: `${BRAND_NAME} | Estudio boutique en Madrid`,
     description: siteConfig.description,
     images: [siteConfig.logoSrc],
   },

@@ -1,3 +1,5 @@
+import { INSTAGRAM_LABEL, INSTAGRAM_URL } from "@/config/portfolio";
+
 export const BRAND_NAME = "Sakura Needle Tattoo";
 export type BookingMode = "external" | "embed";
 export const BOOKING_URL =
@@ -10,11 +12,11 @@ export const siteConfig = {
   siteUrl: "https://your-domain.com",
   logoSrc: "/sakura-needle-logo.jpeg",
   logoAlt:
-    "Logo de Sakura Needle Tattoo con una máquina de tatuar fine line y flores Sakura",
+    "Logo de Sakura Needle Tattoo con flores Sakura y una máquina de tatuar delicada",
   description:
-    "Estudio boutique de fine line y floral tattoo con diseños delicados, personalizados y una experiencia serena de cita previa.",
-  instagramUrl: "https://instagram.com/sakuraneedletattoo",
-  instagramLabel: "@sakuraneedletattoo",
+    "Tatuajes personalizados en Madrid con una propuesta delicada, limpia y serena de cita previa.",
+  instagramUrl: INSTAGRAM_URL,
+  instagramLabel: INSTAGRAM_LABEL,
   whatsappUrl: "https://wa.me/34612345678",
   whatsappLabel: "+34 612 345 678",
   email: "hola@sakuraneedletattoo.com",

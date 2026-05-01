@@ -8,8 +8,8 @@ export function ProcessSection() {
       <Container>
         <SectionHeading
           eyebrow="Proceso"
-          title="Un recorrido claro y sereno desde la idea hasta la curación"
-          description="La sección resume el flujo habitual de trabajo en cuatro pasos fáciles de entender para nuevas clientas."
+          title="Un recorrido claro y sereno desde la idea hasta el cuidado final"
+          description="Cuatro pasos simples para entender la experiencia de principio a fin."
           align="center"
         />
 

@@ -1,10 +1,15 @@
 import { Container } from "@/components/container";
+import { PetalCluster } from "@/components/petal-cluster";
 import { SectionHeading } from "@/components/section-heading";
 import { aboutContent } from "@/config/landing-content";
 
 export function AboutSection() {
   return (
-    <section id="sobre-mi" className="section-anchor py-20 sm:py-24">
+    <section
+      id="sobre-mi"
+      className="section-anchor relative overflow-hidden py-20 sm:py-24"
+    >
+      <PetalCluster className="-right-10 bottom-8 hidden opacity-60 lg:block" />
       <Container className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="order-2 lg:order-1">
           <SectionHeading

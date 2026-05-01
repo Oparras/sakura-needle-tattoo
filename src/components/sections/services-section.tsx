@@ -11,12 +11,12 @@ export function ServicesSection() {
       <Container>
         <SectionHeading
           eyebrow="Servicios"
-          title="Especialidades delicadas, limpias y pensadas para durar"
-          description="Cada servicio está preparado para explicar el enfoque del estudio con un texto breve, claro y fácil de editar."
+          title="Tres formas de trabajar cada idea con calma"
+          description="Una selección sencilla para presentar el enfoque del estudio con equilibrio, claridad y aire visual."
           align="center"
         />
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        <div className="mx-auto mt-14 grid max-w-6xl gap-5 md:grid-cols-3">
           {services.map((service) => (
             <article
               key={service.title}

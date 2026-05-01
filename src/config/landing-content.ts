@@ -9,78 +9,56 @@ export type ProcessStep = {
   description: string;
 };
 
-export type PortfolioItem = {
-  title: string;
-  caption: string;
-  tag: string;
-  imageSrc?: string;
-  instagramEmbedUrl?: string;
-  alt?: string;
-};
-
 export type FaqItem = {
   question: string;
   answer: string;
 };
 
 export const heroContent = {
-  badge: "Boutique fine line studio",
-  title: "Tatuajes delicados, florales y personalizados",
-  subtitle: "Fine line tattoo · Sakura inspired · Diseño personalizado",
+  badge: "Estudio boutique en Madrid",
+  title: "Tatuajes personalizados con delicadeza y detalle",
+  subtitle: "Diseño cuidado · Cita previa · Trato cercano",
   description:
-    "Una experiencia íntima, limpia y cuidada para transformar tu idea en una pieza elegante, sutil y hecha contigo.",
+    "Una propuesta íntima y elegante para transformar cada idea en una pieza sutil, equilibrada y hecha contigo.",
 } as const;
 
 export const aboutContent = {
   eyebrow: "Sobre mí",
-  title: "Una propuesta delicada, cercana y diseñada con intención",
+  title: "Una forma de tatuar cercana, limpia y pensada con calma",
   intro:
-    "Este espacio está pensado para presentar la voz de la tatuadora, su estilo y la forma en la que acompaña cada proyecto.",
+    "Un espacio pensado para crear piezas personales con sensibilidad, equilibrio y atención al detalle.",
   paragraphs: [
-    "Trabajo cada diseño desde la escucha, la sutileza y el cuidado del detalle. La idea es que cada tatuaje conserve una estética limpia y atemporal, manteniendo la esencia fine line en cada trazo.",
-    "La experiencia se plantea de forma cercana y guiada: desde la primera conversación hasta el seguimiento de los cuidados posteriores. Todo el proceso se adapta a la piel, a la zona y al estilo de cada persona.",
+    "Cada diseño nace de una conversación tranquila, de la observación y del cuidado por la forma, la escala y la piel.",
+    "La experiencia está pensada para que te sientas acompañada de principio a fin, con un trato cercano y una atención serena al detalle.",
   ],
   highlights: [
-    "Diseños finos y florales con composición personalizada",
-    "Trato uno a uno, ritmo sereno y asesoramiento claro",
-    "Atención a la colocación, la escala y la armonía visual",
-    "Enfoque higiénico, profesional y delicado de principio a fin",
+    "Cita previa y atención personalizada",
+    "Diseños equilibrados y pensados para ti",
+    "Ambiente cuidado, limpio y profesional",
   ],
-  imageTitle: "Foto de la artista o del estudio",
+  imageTitle: "Retrato de la artista o del estudio",
   imageDescription:
-    "Sustituye este bloque por un retrato, una foto del estudio o una imagen editorial que refuerce el universo de marca.",
+    "Aquí puede ir una imagen editorial que refuerce la identidad del proyecto con calma y sensibilidad visual.",
 } as const;
 
 export const services: ServiceItem[] = [
   {
-    title: "Fine line tattoo",
+    title: "Tatuajes",
     description:
-      "Piezas de línea fina, limpias y sutiles, pensadas para envejecer con elegancia.",
+      "Piezas cuidadas y personalizadas, creadas para acompañarte con naturalidad.",
     accent: "01",
-  },
-  {
-    title: "Floral tattoo",
-    description:
-      "Composiciones botánicas delicadas inspiradas en flores, ramas y movimiento orgánico.",
-    accent: "02",
-  },
-  {
-    title: "Flash tattoos",
-    description:
-      "Diseños seleccionados listos para tatuar, con la identidad visual del estudio.",
-    accent: "03",
   },
   {
     title: "Diseño personalizado",
     description:
-      "Desarrollo desde cero de una idea propia, adaptada a tu historia, zona y estilo.",
-    accent: "04",
+      "Tu idea se desarrolla con calma para encontrar una composición armónica y propia.",
+    accent: "02",
   },
   {
     title: "Mini tattoos",
     description:
-      "Tatuajes pequeños y refinados para quienes buscan una pieza discreta y especial.",
-    accent: "05",
+      "Opciones pequeñas, sutiles y elegantes para quienes buscan algo discreto.",
+    accent: "03",
   },
 ];
 
@@ -107,43 +85,10 @@ export const processSteps: ProcessStep[] = [
   },
 ];
 
-export const portfolioItems: PortfolioItem[] = [
-  {
-    title: "Composición floral vertical",
-    caption: "Placeholder listo para sustituirse por imagen real o embed.",
-    tag: "Fine line",
-  },
-  {
-    title: "Mini tattoo botánico",
-    caption: "Ideal para piezas sutiles, muñeca, clavícula o tobillo.",
-    tag: "Mini",
-  },
-  {
-    title: "Flash delicado",
-    caption: "Un bloque preparado para mostrar flash disponible o colecciones temporales.",
-    tag: "Flash",
-  },
-  {
-    title: "Diseño editorial",
-    caption: "Perfecto para sustituirlo por fotografía macro con fondo limpio.",
-    tag: "Custom",
-  },
-  {
-    title: "Ramo Sakura",
-    caption: "Componente preparado para futuras imágenes cuadradas o verticales.",
-    tag: "Floral",
-  },
-  {
-    title: "Tattoo placement",
-    caption: "Puedes usarlo para mockups, healed tattoos o capturas de Instagram.",
-    tag: "Studio",
-  },
-];
-
 export const bookingHighlights = [
-  "Reserva externa fácil de actualizar sin tocar la maquetación.",
-  "CTA preparada para abrir Calendly o SimplyBook.me en una nueva pestaña.",
-  "Espacio reservado para integrar el iframe cuando quieras activarlo.",
+  "Consulta disponibilidad de forma rápida y cómoda.",
+  "Comparte tu idea y reserva con calma, sin fricciones.",
+  "Recibe la información necesaria antes de tu cita.",
 ] as const;
 
 export const faqs: FaqItem[] = [
@@ -160,7 +105,7 @@ export const faqs: FaqItem[] = [
   {
     question: "¿Puedo llevar una idea propia?",
     answer:
-      "Sí. Puedes traer referencias, conceptos o una idea inicial para trabajarla y convertirla en un diseño alineado con el estilo del estudio.",
+      "Sí. Puedes traer referencias, conceptos o una idea inicial para desarrollarla contigo y darle una forma cuidada.",
   },
   {
     question: "¿Cómo preparo la piel antes de tatuarme?",

@@ -23,11 +23,12 @@ export function BookingEmbed() {
               BookingEmbed
             </p>
             <h3 className="mt-4 font-display text-3xl tracking-[-0.04em] text-foreground sm:text-4xl">
-              Agenda externa lista para integrar
+              Agenda preparada para integrarse aquí
             </h3>
             <p className="mt-4 max-w-md text-base leading-7 text-muted sm:leading-8">
-              Ahora mismo este bloque funciona como placeholder elegante. El
-              botón de reserva ya abre la URL externa definida en configuración.
+              Mientras la reserva viva fuera de la landing, este bloque mantiene
+              el espacio listo para mostrar la agenda dentro de la página cuando
+              quieras activarla.
             </p>
             <p className="mt-6 max-w-full break-all rounded-2xl border border-soft-border bg-white px-4 py-2 text-sm text-muted">
               {siteConfig.booking.url}
