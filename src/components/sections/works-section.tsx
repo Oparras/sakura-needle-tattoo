@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { ButtonLink } from "@/components/button-link";
 import { Container } from "@/components/container";
 import { InstagramFeaturedEmbed } from "@/components/instagram-featured-embed";
@@ -8,12 +10,23 @@ import { WorkCardMedia } from "@/components/work-card-media";
 import { portfolioConfig, type PortfolioItem } from "@/config/portfolio";
 import { cn } from "@/lib/utils";
 
+type ResolvedPortfolioItem = PortfolioItem & {
+  hasImage: boolean;
+};
+
 type WorkCardProps = {
-  item: PortfolioItem;
+  item: ResolvedPortfolioItem;
   featured?: boolean;
 };
 
+function hasLocalImage(src: string) {
+  const normalized = src.replace(/^\/+/, "");
+  return existsSync(join(process.cwd(), "public", normalized));
+}
+
 function WorkCard({ item, featured = false }: WorkCardProps) {
+  const mediaHasImage = item.hasImage;
+
   return (
     <a
       href={item.href}
@@ -37,28 +50,67 @@ function WorkCard({ item, featured = false }: WorkCardProps) {
           src={item.image}
           alt={item.alt}
           title={item.title}
+          hasImage={mediaHasImage}
           sizes={
             featured
               ? "(min-width: 1280px) 50vw, (min-width: 520px) 100vw, 100vw"
               : "(min-width: 1280px) 24vw, (min-width: 640px) 48vw, 100vw"
           }
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,253,252,0.02),rgba(31,30,30,0.18))] opacity-80 transition-opacity duration-200 group-hover:opacity-100" />
 
-        <div className="absolute left-4 top-4 rounded-full border border-white/65 bg-[rgba(255,253,252,0.84)] px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-foreground backdrop-blur-sm">
+        <div
+          className={cn(
+            "absolute inset-0 transition-opacity duration-200",
+            mediaHasImage
+              ? "bg-[linear-gradient(180deg,rgba(20,18,18,0.04),rgba(20,18,18,0.3))] opacity-85 group-hover:opacity-100"
+              : "bg-[linear-gradient(180deg,rgba(255,253,252,0.02),rgba(31,30,30,0.14))] opacity-75 group-hover:opacity-95",
+          )}
+        />
+
+        <div
+          className={cn(
+            "absolute left-4 top-4 rounded-full border px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.22em] backdrop-blur-sm",
+            mediaHasImage
+              ? "border-white/55 bg-[rgba(255,253,252,0.18)] text-white"
+              : "border-white/65 bg-[rgba(255,253,252,0.84)] text-foreground",
+          )}
+        >
           {item.type === "reel" ? "Reel" : "Post"}
         </div>
 
-        <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 rounded-[1.35rem] border border-white/65 bg-[rgba(255,253,252,0.84)] px-4 py-3 backdrop-blur-sm">
+        <div
+          className={cn(
+            "absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 rounded-[1.3rem] border px-4 py-3 backdrop-blur-sm",
+            mediaHasImage
+              ? "border-white/28 bg-[rgba(255,253,252,0.14)]"
+              : "border-white/65 bg-[rgba(255,253,252,0.84)]",
+          )}
+        >
           <div className="min-w-0">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-muted">
+            <p
+              className={cn(
+                "text-[0.66rem] font-semibold uppercase tracking-[0.24em]",
+                mediaHasImage ? "text-white/80" : "text-muted",
+              )}
+            >
               Instagram
             </p>
-            <h3 className="mt-2 truncate font-display text-3xl leading-none tracking-[-0.04em] text-foreground sm:text-[2rem]">
+            <h3
+              className={cn(
+                "mt-2 truncate font-display leading-none tracking-[-0.04em]",
+                featured ? "text-[2.15rem] sm:text-[2.35rem]" : "text-[1.95rem]",
+                mediaHasImage ? "text-white" : "text-foreground",
+              )}
+            >
               {item.title}
             </h3>
           </div>
-          <span className="shrink-0 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-foreground transition-transform duration-200 group-hover:translate-x-0.5">
+          <span
+            className={cn(
+              "shrink-0 text-[0.68rem] font-semibold uppercase tracking-[0.2em] transition-transform duration-200 group-hover:translate-x-0.5",
+              mediaHasImage ? "text-white" : "text-foreground",
+            )}
+          >
             Ver
           </span>
         </div>
@@ -67,20 +119,21 @@ function WorkCard({ item, featured = false }: WorkCardProps) {
   );
 }
 
-function ExternalPortfolioPanel() {
+function ExternalPortfolioPanel({ items }: { items: ResolvedPortfolioItem[] }) {
   return (
     <div className="mt-12 rounded-[2rem] border border-soft-border bg-white/80 p-5 shadow-[0_22px_60px_rgba(136,103,110,0.07)] sm:p-6">
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        {portfolioConfig.items.slice(0, 4).map((item) => (
+        {items.slice(0, 4).map((item) => (
           <div
             key={item.href}
             className="relative overflow-hidden rounded-[1.7rem] border border-soft-border bg-warm-white"
           >
             <div className="aspect-[5/6]">
               <WorkCardMedia
-                src=""
+                src={item.image}
                 alt={item.alt}
                 title={item.title}
+                hasImage={item.hasImage}
                 sizes="(min-width: 1280px) 24vw, (min-width: 768px) 48vw, 100vw"
               />
             </div>
@@ -92,11 +145,14 @@ function ExternalPortfolioPanel() {
 }
 
 export function WorksSection() {
+  const resolvedItems: ResolvedPortfolioItem[] = portfolioConfig.items.map((item) => ({
+    ...item,
+    hasImage: hasLocalImage(item.image),
+  }));
+
   const featuredItem =
-    portfolioConfig.items.find((item) => item.featured) ?? portfolioConfig.items[0];
-  const otherItems = portfolioConfig.items.filter(
-    (item) => item.href !== featuredItem?.href,
-  );
+    resolvedItems.find((item) => item.featured) ?? resolvedItems[0];
+  const otherItems = resolvedItems.filter((item) => item.href !== featuredItem?.href);
   const isManualMode = portfolioConfig.mode === "manual";
 
   return (
@@ -135,7 +191,7 @@ export function WorksSection() {
             ))}
           </div>
         ) : (
-          <ExternalPortfolioPanel />
+          <ExternalPortfolioPanel items={resolvedItems} />
         )}
 
         <InstagramFeaturedEmbed />

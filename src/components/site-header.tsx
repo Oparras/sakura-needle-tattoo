@@ -12,12 +12,12 @@ export function SiteHeader() {
   const [brandLead, ...brandTail] = BRAND_NAME.split(" ");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-soft-border/80 bg-[rgba(255,253,252,0.82)] backdrop-blur-xl">
-      <Container className="relative grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 py-2.5 sm:gap-4 sm:py-3 lg:flex lg:justify-between">
+    <header className="border-b border-soft-border/80 bg-[rgba(255,253,252,0.9)]">
+      <Container className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 py-2.5 sm:gap-4 sm:py-3 lg:flex lg:justify-between">
         <a
           href="#inicio"
           aria-label={`Ir al inicio de ${BRAND_NAME}`}
-          className="flex min-w-0 max-w-[12.25rem] items-center gap-2.5 overflow-hidden pr-14 sm:max-w-none sm:pr-2 sm:gap-3"
+          className="flex min-w-0 items-center gap-2.5 overflow-hidden pr-2 sm:gap-3"
           onClick={() => setMenuOpen(false)}
         >
           <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-soft-border bg-white shadow-[0_12px_30px_rgba(110,92,92,0.08)] sm:h-12 sm:w-12">
@@ -39,73 +39,68 @@ export function SiteHeader() {
           </div>
         </a>
 
-        <nav className="hidden lg:block" aria-label="Navegación principal">
-          <ul className="flex items-center gap-6 text-sm text-muted">
-            {navigationItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="hover:text-foreground"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="hidden lg:flex lg:items-center lg:gap-8">
+          <nav aria-label="Navegación principal">
+            <ul className="flex items-center gap-6 text-sm text-muted">
+              {navigationItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className="transition-colors hover:text-foreground"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div className="shrink-0 flex items-center gap-3">
-          <div className="hidden lg:flex">
-            <ButtonLink
-              href={siteConfig.booking.url}
-              target="_blank"
-              aria-label={`${siteConfig.booking.ctaLabel} en una nueva pestaña`}
-              className="min-h-11 px-5"
-            >
-              {siteConfig.booking.ctaLabel}
-            </ButtonLink>
-          </div>
-
-          <button
-            type="button"
-            className="absolute right-4 top-1/2 z-10 inline-flex h-11 w-11 shrink-0 -translate-y-1/2 items-center justify-center gap-2 rounded-full border border-transparent bg-foreground text-sm font-semibold text-warm-white shadow-[0_10px_24px_rgba(87,71,71,0.14)] hover:-translate-y-[52%] hover:bg-[#2b2929] sm:static sm:h-auto sm:w-auto sm:translate-y-0 sm:border-soft-border sm:bg-white/88 sm:px-3 sm:py-2.5 sm:text-foreground sm:shadow-[0_10px_24px_rgba(87,71,71,0.05)] sm:hover:border-sakura-strong sm:hover:bg-white sm:hover:translate-y-0 lg:hidden"
-            aria-label={menuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((open) => !open)}
+          <ButtonLink
+            href={siteConfig.booking.url}
+            target="_blank"
+            aria-label={`${siteConfig.booking.ctaLabel} en una nueva pestaña`}
+            className="min-h-11 px-5"
           >
-            <span aria-hidden="true" className="flex flex-col gap-1">
-              <span
-                className={cn(
-                  "block h-px w-4 bg-current transition-transform",
-                  menuOpen && "translate-y-[5px] rotate-45",
-                )}
-              />
-              <span
-                className={cn(
-                  "block h-px w-4 bg-current transition-opacity",
-                  menuOpen && "opacity-0",
-                )}
-              />
-              <span
-                className={cn(
-                  "block h-px w-4 bg-current transition-transform",
-                  menuOpen && "-translate-y-[5px] -rotate-45",
-                )}
-              />
-            </span>
-            <span className="hidden sm:inline">
-              {menuOpen ? "Cerrar" : "Menú"}
-            </span>
-          </button>
+            {siteConfig.booking.ctaLabel}
+          </ButtonLink>
         </div>
+
+        <button
+          type="button"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-transparent bg-foreground text-warm-white shadow-[0_10px_24px_rgba(87,71,71,0.14)] transition-colors hover:bg-[#2b2929] sm:border-soft-border sm:bg-white sm:text-foreground sm:shadow-[0_10px_24px_rgba(87,71,71,0.05)] sm:hover:border-sakura-strong lg:hidden"
+          aria-label={menuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span aria-hidden="true" className="flex flex-col gap-1">
+            <span
+              className={cn(
+                "block h-px w-4 bg-current transition-transform",
+                menuOpen && "translate-y-[5px] rotate-45",
+              )}
+            />
+            <span
+              className={cn(
+                "block h-px w-4 bg-current transition-opacity",
+                menuOpen && "opacity-0",
+              )}
+            />
+            <span
+              className={cn(
+                "block h-px w-4 bg-current transition-transform",
+                menuOpen && "-translate-y-[5px] -rotate-45",
+              )}
+            />
+          </span>
+        </button>
       </Container>
 
       <div
         id="mobile-menu"
         className={cn(
-          "overflow-hidden border-t border-soft-border/70 bg-[rgba(255,253,252,0.94)] transition-all duration-300 lg:hidden",
+          "overflow-hidden border-t border-soft-border/70 bg-[rgba(255,253,252,0.96)] transition-all duration-300 lg:hidden",
           menuOpen ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0",
         )}
       >
@@ -114,7 +109,7 @@ export function SiteHeader() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-2xl px-4 py-3 text-sm font-medium text-foreground hover:bg-white"
+              className="rounded-2xl px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-white"
               onClick={() => setMenuOpen(false)}
             >
               {item.label}
