@@ -1,10 +1,15 @@
+import { appointmentConfig, type BookingMode } from "@/config/appointment";
 import { INSTAGRAM_LABEL, INSTAGRAM_URL } from "@/config/portfolio";
+import { buildDirectWhatsappUrl } from "@/lib/whatsapp";
 
 export const BRAND_NAME = "Sakura Needle Tattoo";
-export type BookingMode = "external" | "embed";
-export const BOOKING_URL =
-  "https://calendly.com/sakura-needle-tattoo/consulta";
-export const BOOKING_MODE: BookingMode = "external";
+
+const BOOKING_URL =
+  appointmentConfig.bookingMode === "custom"
+    ? "#reservar"
+    : appointmentConfig.externalBookingUrl;
+const WHATSAPP_URL =
+  buildDirectWhatsappUrl(appointmentConfig.whatsappNumber) ?? "";
 
 export const siteConfig = {
   brandName: BRAND_NAME,
@@ -12,20 +17,22 @@ export const siteConfig = {
   siteUrl: "https://your-domain.com",
   logoSrc: "/sakura-needle-logo.jpeg",
   logoAlt:
-    "Logo de Sakura Needle Tattoo con flores Sakura y una máquina de tatuar delicada",
+    "Logo de Sakura Needle Tattoo con flores Sakura y una maquina de tatuar delicada",
   description:
-    "Tatuajes personalizados con una propuesta delicada, limpia y serena de cita previa.",
+    "Tatuajes personalizados con una propuesta delicada, limpia y serena y solicitud de cita previa.",
   instagramUrl: INSTAGRAM_URL,
   instagramLabel: INSTAGRAM_LABEL,
-  whatsappUrl: "https://wa.me/34612345678",
-  whatsappLabel: "+34 612 345 678",
+  whatsappUrl: WHATSAPP_URL,
+  whatsappLabel: appointmentConfig.whatsappLabel,
   email: "hola@sakuraneedletattoo.com",
   city: "Madrid · Estudio privado con cita previa",
   booking: {
-    mode: BOOKING_MODE,
+    mode: appointmentConfig.bookingMode as BookingMode,
     url: BOOKING_URL,
-    embedUrl: BOOKING_URL,
-    ctaLabel: "Reservar cita",
+    externalUrl: appointmentConfig.externalBookingUrl,
+    embedUrl: appointmentConfig.embedUrl,
+    ctaLabel: appointmentConfig.ctaLabel,
+    opensInNewTab: appointmentConfig.bookingMode !== "custom",
     iframeTitle: `Reserva tu cita con ${BRAND_NAME}`,
   },
 };
@@ -39,3 +46,5 @@ export const navigationItems = [
   { label: "FAQ", href: "#faq" },
   { label: "Contacto", href: "#contacto" },
 ] as const;
+
+export type { BookingMode } from "@/config/appointment";

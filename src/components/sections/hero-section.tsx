@@ -8,6 +8,11 @@ import { heroContent } from "@/config/landing-content";
 import { siteConfig } from "@/config/site";
 
 export function HeroSection() {
+  const bookingTarget = siteConfig.booking.opensInNewTab ? "_blank" : undefined;
+  const bookingAriaLabel = siteConfig.booking.opensInNewTab
+    ? `${siteConfig.booking.ctaLabel} en una nueva pestaña`
+    : `${siteConfig.booking.ctaLabel} en esta página`;
+
   return (
     <section
       id="inicio"
@@ -36,8 +41,8 @@ export function HeroSection() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink
               href={siteConfig.booking.url}
-              target="_blank"
-              aria-label={`${siteConfig.booking.ctaLabel} en una nueva pestaña`}
+              target={bookingTarget}
+              aria-label={bookingAriaLabel}
               className="w-full sm:w-auto"
             >
               {siteConfig.booking.ctaLabel}

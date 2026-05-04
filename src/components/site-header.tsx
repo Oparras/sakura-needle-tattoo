@@ -10,6 +10,10 @@ import { cn } from "@/lib/utils";
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [brandLead, ...brandTail] = BRAND_NAME.split(" ");
+  const bookingTarget = siteConfig.booking.opensInNewTab ? "_blank" : undefined;
+  const bookingAriaLabel = siteConfig.booking.opensInNewTab
+    ? `${siteConfig.booking.ctaLabel} en una nueva pestaña`
+    : `${siteConfig.booking.ctaLabel} en esta página`;
 
   return (
     <header className="border-b border-soft-border/80 bg-[rgba(255,253,252,0.9)]">
@@ -58,8 +62,8 @@ export function SiteHeader() {
 
           <ButtonLink
             href={siteConfig.booking.url}
-            target="_blank"
-            aria-label={`${siteConfig.booking.ctaLabel} en una nueva pestaña`}
+            target={bookingTarget}
+            aria-label={bookingAriaLabel}
             className="min-h-11 px-5"
           >
             {siteConfig.booking.ctaLabel}
@@ -117,8 +121,8 @@ export function SiteHeader() {
           ))}
           <ButtonLink
             href={siteConfig.booking.url}
-            target="_blank"
-            aria-label={`${siteConfig.booking.ctaLabel} en una nueva pestaña`}
+            target={bookingTarget}
+            aria-label={bookingAriaLabel}
             className="mt-2"
             onClick={() => setMenuOpen(false)}
           >

@@ -76,7 +76,7 @@ export const processSteps: ProcessStep[] = [
   {
     title: "Reserva tu cita",
     description:
-      "Bloquea fecha y hora mediante la plataforma externa de booking y recibe la información clave.",
+      "Elige la disponibilidad que mejor te encaja, envía tu solicitud y Sara te escribirá para cerrar la hora exacta.",
   },
   {
     title: "Cuidados posteriores",
@@ -86,21 +86,21 @@ export const processSteps: ProcessStep[] = [
 ];
 
 export const bookingHighlights = [
-  "Consulta disponibilidad de forma rápida y cómoda.",
-  "Comparte tu idea y reserva con calma, sin fricciones.",
-  "Recibe la información necesaria antes de tu cita.",
+  "Consulta la disponibilidad real marcada por Sara en el calendario.",
+  "Envía una solicitud tranquila y recibe una respuesta personal.",
+  "Después concretaremos diseño, tamaño, señal y horario exacto.",
 ] as const;
 
 export const faqs: FaqItem[] = [
   {
     question: "¿Cómo reservo una cita?",
     answer:
-      "Puedes hacerlo desde el botón de reserva. La web te enviará a la herramienta externa de booking para escoger fecha y completar tu solicitud.",
+      "Puedes hacerlo desde el calendario de solicitud. Eliges una o varias franjas disponibles, envías tu idea y Sara te contactará después para concretar la cita.",
   },
   {
     question: "¿Tengo que pagar señal?",
     answer:
-      "Sí, normalmente se solicita una señal para bloquear la cita. El importe y las condiciones exactas pueden editarse fácilmente en este bloque cuando definas la política final.",
+      "Normalmente la señal se confirma cuando Sara revisa contigo el diseño, el tamaño y la hora definitiva. El importe exacto puede ajustarse después en este mismo bloque.",
   },
   {
     question: "¿Puedo llevar una idea propia?",

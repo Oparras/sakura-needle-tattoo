@@ -1,8 +1,9 @@
-import { type BookingMode, siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/site";
 
 export function BookingEmbed() {
-  const isEmbedMode = (siteConfig.booking.mode as BookingMode) === "embed";
-  const embedUrl = siteConfig.booking.embedUrl || siteConfig.booking.url;
+  const isEmbedMode = siteConfig.booking.mode === "embed";
+  const embedUrl = siteConfig.booking.embedUrl || siteConfig.booking.externalUrl;
+  const referenceUrl = siteConfig.booking.externalUrl || siteConfig.booking.url;
 
   return (
     <div
@@ -31,7 +32,7 @@ export function BookingEmbed() {
               quieras activarla.
             </p>
             <p className="mt-6 max-w-full break-all rounded-2xl border border-soft-border bg-white px-4 py-2 text-sm text-muted">
-              {siteConfig.booking.url}
+              {referenceUrl}
             </p>
           </div>
         )}
@@ -39,11 +40,11 @@ export function BookingEmbed() {
         {
           /*
             Cuando quieras mostrar la agenda dentro de la landing, cambia el
-            mode en src/config/site.ts:
+            mode en src/config/appointment.ts:
 
-            booking: {
-              mode: "embed",
-              url: "https://...",
+            appointmentConfig = {
+              bookingMode: "embed",
+              externalBookingUrl: "https://...",
               embedUrl: "https://...",
             }
           */
