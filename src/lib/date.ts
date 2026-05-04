@@ -88,6 +88,21 @@ export function formatAppointmentDate(value: string | Date) {
   }).format(date);
 }
 
+export function formatDayMonthDate(value: string | Date) {
+  const date = typeof value === "string" ? parseIsoDate(value) : value;
+
+  return new Intl.DateTimeFormat("es-ES", {
+    day: "2-digit",
+    month: "2-digit",
+  }).format(date);
+}
+
+export function isValidIsoDate(value: string) {
+  const date = parseIsoDate(value);
+
+  return !Number.isNaN(date.getTime()) && toIsoDate(date) === value;
+}
+
 export function formatDateTime(value: string) {
   return new Intl.DateTimeFormat("es-ES", {
     dateStyle: "medium",

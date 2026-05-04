@@ -17,7 +17,7 @@ import {
   isPastIsoDate,
   toIsoDate,
 } from "@/lib/date";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 import { buildTelegramMessage, sendTelegramNotification } from "@/lib/telegram";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -122,7 +122,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const supabase = getSupabaseServerClient();
+  const supabase = getSupabaseAdminClient();
   const requestedDates = [...new Set(payload.selectedSlots.map((slot) => slot.date))];
   const { data: availabilityData, error: availabilityError } = await supabase
     .from("availability_slots")
@@ -171,7 +171,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const { error: insertError } = await supabase
+  const { data: insertedRequest, error: insertError } = await supabase
     .from("appointment_requests")
     .insert({
       first_name: payload.firstName,
@@ -180,9 +180,11 @@ export async function POST(request: Request) {
       design_status: payload.designStatus,
       comment: payload.comment || null,
       selected_slots: payload.selectedSlots,
-    });
+    })
+    .select("id")
+    .single();
 
-  if (insertError) {
+  if (insertError || !insertedRequest) {
     console.error("Failed to insert appointment request", insertError);
 
     return NextResponse.json(
@@ -199,7 +201,9 @@ export async function POST(request: Request) {
   let warning: string | undefined;
 
   try {
-    await sendTelegramNotification(buildTelegramMessage(payload));
+    await sendTelegramNotification(
+      buildTelegramMessage(payload, insertedRequest.id),
+    );
     telegramSent = true;
   } catch (error) {
     warning =
