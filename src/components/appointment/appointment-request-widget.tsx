@@ -318,31 +318,35 @@ export function AppointmentRequestWidget() {
             Cargando disponibilidad...
           </div>
         ) : (
-          <div className="mt-6 grid gap-4 sm:gap-5 min-[1400px]:grid-cols-[minmax(26rem,1.08fr)_minmax(19rem,0.92fr)]">
-            <AppointmentCalendar
-              month={visibleMonth}
-              selectedDate={selectedDate}
-              availabilityByDate={availabilityByDate}
-              canGoPrevious={canGoPrevious}
-              canGoNext={canGoNext}
-              onPrevious={() => setMonthOffset((current) => Math.max(0, current - 1))}
-              onNext={() =>
-                setMonthOffset((current) =>
-                  Math.min(appointmentConfig.maxMonthsAhead, current + 1),
-                )
-              }
-              onSelectDate={handleSelectDate}
-            />
-
-            <div className="grid gap-4 sm:gap-5 lg:grid-cols-2 min-[1400px]:grid-cols-1">
-              <AppointmentTimeSlots
-                activeDate={selectedDate}
-                availability={activeAvailability}
-                selectedSlots={selectedSlots}
-                onToggleSlot={handleToggleSlot}
+          <div className="mt-6 space-y-4 sm:space-y-5">
+            <div className="min-w-0">
+              <AppointmentCalendar
+                month={visibleMonth}
+                selectedDate={selectedDate}
+                availabilityByDate={availabilityByDate}
+                canGoPrevious={canGoPrevious}
+                canGoNext={canGoNext}
+                onPrevious={() => setMonthOffset((current) => Math.max(0, current - 1))}
+                onNext={() =>
+                  setMonthOffset((current) =>
+                    Math.min(appointmentConfig.maxMonthsAhead, current + 1),
+                  )
+                }
+                onSelectDate={handleSelectDate}
               />
+            </div>
 
-              <div className="rounded-[1.6rem] border border-soft-border bg-white px-4 py-4 shadow-[0_16px_40px_rgba(136,103,110,0.05)] sm:px-5 sm:py-5">
+            <div className="grid gap-4 sm:gap-5 lg:grid-cols-2">
+              <div className="min-w-0">
+                <AppointmentTimeSlots
+                  activeDate={selectedDate}
+                  availability={activeAvailability}
+                  selectedSlots={selectedSlots}
+                  onToggleSlot={handleToggleSlot}
+                />
+              </div>
+
+              <div className="min-w-0 rounded-[1.6rem] border border-soft-border bg-white px-4 py-4 shadow-[0_16px_40px_rgba(136,103,110,0.05)] sm:px-5 sm:py-5">
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted">
