@@ -316,71 +316,83 @@ async function safelyAnswerCallbackQuery(callbackQueryId: string, text: string) 
 }
 
 export async function POST(request: Request) {
-  if (!getWebhookSecretIsValid(request)) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Unauthorized webhook request.",
-      },
-      { status: 401 },
-    );
-  }
-
-  let update: TelegramUpdate;
-
   try {
-    update = (await request.json()) as TelegramUpdate;
-  } catch {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Invalid Telegram payload.",
-      },
-      { status: 400 },
-    );
-  }
+    if (!getWebhookSecretIsValid(request)) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Unauthorized webhook request.",
+        },
+        { status: 401 },
+      );
+    }
 
-  const callbackQuery = getCallbackQuery(update);
+    let update: TelegramUpdate;
 
-  if (!callbackQuery?.id || !callbackQuery.data) {
+    try {
+      update = (await request.json()) as TelegramUpdate;
+    } catch {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Invalid Telegram payload.",
+        },
+        { status: 400 },
+      );
+    }
+
+    const callbackQuery = getCallbackQuery(update);
+
+    if (!callbackQuery?.id || !callbackQuery.data) {
+      return NextResponse.json({ ok: true });
+    }
+
+    const callbackChatId = callbackQuery.message?.chat?.id;
+
+    if (String(callbackChatId ?? "") !== getTelegramChatId()) {
+      await safelyAnswerCallbackQuery(
+        callbackQuery.id,
+        "Este chat no esta autorizado para gestionar solicitudes.",
+      );
+
+      return NextResponse.json({ ok: true });
+    }
+
+    const action = parseTelegramCallbackData(callbackQuery.data);
+
+    if (!action) {
+      await safelyAnswerCallbackQuery(
+        callbackQuery.id,
+        "Accion no valida o manipulada.",
+      );
+
+      return NextResponse.json({ ok: true });
+    }
+
+    try {
+      const resultMessage = await handleCallbackAction(action);
+      await safelyAnswerCallbackQuery(callbackQuery.id, resultMessage);
+    } catch (error) {
+      console.error("Failed to process Telegram callback", {
+        action,
+        error,
+      });
+      await safelyAnswerCallbackQuery(
+        callbackQuery.id,
+        "No se pudo procesar esta accion. Intentalo de nuevo.",
+      );
+    }
+
     return NextResponse.json({ ok: true });
-  }
-
-  const callbackChatId = callbackQuery.message?.chat?.id;
-
-  if (String(callbackChatId ?? "") !== getTelegramChatId()) {
-    await safelyAnswerCallbackQuery(
-      callbackQuery.id,
-      "Este chat no está autorizado para gestionar solicitudes.",
-    );
-
-    return NextResponse.json({ ok: true });
-  }
-
-  const action = parseTelegramCallbackData(callbackQuery.data);
-
-  if (!action) {
-    await safelyAnswerCallbackQuery(
-      callbackQuery.id,
-      "Acción no válida o manipulada.",
-    );
-
-    return NextResponse.json({ ok: true });
-  }
-
-  try {
-    const resultMessage = await handleCallbackAction(action);
-    await safelyAnswerCallbackQuery(callbackQuery.id, resultMessage);
   } catch (error) {
-    console.error("Failed to process Telegram callback", {
-      action,
-      error,
-    });
-    await safelyAnswerCallbackQuery(
-      callbackQuery.id,
-      "No se pudo procesar esta acción. Inténtalo de nuevo.",
+    console.error("Unexpected Telegram webhook error", error);
+
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Unexpected Telegram webhook error.",
+      },
+      { status: 500 },
     );
   }
-
-  return NextResponse.json({ ok: true });
 }

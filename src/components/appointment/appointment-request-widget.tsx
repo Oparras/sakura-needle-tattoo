@@ -44,6 +44,14 @@ type SubmitFeedback = {
   warning?: string;
 } | null;
 
+type AppointmentRequestApiResponse = {
+  ok: boolean;
+  telegramSent?: boolean;
+  error?: string;
+  warning?: string;
+  fieldErrors?: AppointmentRequestFieldErrors;
+} | null;
+
 const INITIAL_FORM_STATE: FormState = {
   firstName: "",
   lastName: "",
@@ -70,6 +78,18 @@ function getFirstAvailableDateForMonth(
       (day) => day.isCurrentMonth && !day.isPast && availableDates.has(day.iso),
     )?.iso ?? null
   );
+}
+
+async function parseApiResponse(
+  response: Response,
+): Promise<AppointmentRequestApiResponse> {
+  try {
+    const text = await response.text();
+
+    return text ? (JSON.parse(text) as AppointmentRequestApiResponse) : null;
+  } catch {
+    return null;
+  }
 }
 
 export function AppointmentRequestWidget() {
@@ -239,18 +259,12 @@ export function AppointmentRequestWidget() {
         },
         body: JSON.stringify(payload),
       });
-      const result = (await response.json()) as {
-        ok: boolean;
-        telegramSent?: boolean;
-        error?: string;
-        warning?: string;
-        fieldErrors?: AppointmentRequestFieldErrors;
-      };
+      const result = await parseApiResponse(response);
 
-      if (!response.ok || !result.ok) {
-        setFieldErrors(result.fieldErrors ?? {});
+      if (!response.ok || !result?.ok) {
+        setFieldErrors(result?.fieldErrors ?? {});
         throw new Error(
-          result.error ??
+          result?.error ??
             "No se pudo enviar la solicitud. Inténtalo de nuevo en unos minutos.",
         );
       }
