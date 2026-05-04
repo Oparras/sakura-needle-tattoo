@@ -46,7 +46,7 @@ export function AppointmentTimeSlots({
         {formatAppointmentDate(activeDate)}
       </h3>
 
-      <div className="mt-5 grid gap-3 md:grid-cols-2">
+      <div className="mt-5 grid gap-3">
         {SLOT_OPTIONS.map((option) => {
           const slot = { date: activeDate, period: option.period };
           const isEnabled =
@@ -64,7 +64,7 @@ export function AppointmentTimeSlots({
               disabled={!isEnabled}
               aria-pressed={isSelected}
               className={cn(
-                "rounded-[1.35rem] border px-4 py-4 text-left",
+                "rounded-[1.35rem] border px-4 py-4 text-left xl:px-5",
                 !isEnabled &&
                   "cursor-not-allowed border-soft-border/70 bg-warm-white text-muted/55",
                 isEnabled &&
@@ -80,7 +80,7 @@ export function AppointmentTimeSlots({
               </span>
               <span
                 className={cn(
-                  "mt-2 block text-sm",
+                  "mt-2 block text-sm leading-6",
                   isSelected ? "text-warm-white/80" : "text-muted",
                 )}
               >

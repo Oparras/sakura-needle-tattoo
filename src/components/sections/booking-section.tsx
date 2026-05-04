@@ -21,8 +21,8 @@ export function BookingSection() {
       <PetalCluster className="right-0 top-10 hidden scale-[0.95] opacity-50 md:block" />
       <SakuraBranch className="right-2 bottom-10 hidden opacity-40 xl:block" mirrored />
 
-      <Container className="grid items-start gap-8 sm:gap-10 lg:grid-cols-[0.92fr_1.08fr]">
-        <div>
+      <Container className="grid max-w-[82rem] items-start gap-8 sm:gap-10 xl:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] xl:gap-12">
+        <div className="max-w-[35rem]">
           <SectionHeading
             eyebrow="Reserva"
             title={
@@ -75,7 +75,9 @@ export function BookingSection() {
           )}
         </div>
 
-        {isCustomBooking ? <AppointmentRequestWidget /> : <BookingEmbed />}
+        <div className="min-w-0">
+          {isCustomBooking ? <AppointmentRequestWidget /> : <BookingEmbed />}
+        </div>
       </Container>
     </section>
   );

@@ -91,7 +91,7 @@ export function AppointmentCalendar({
         ))}
       </div>
 
-      <div className="mt-4 grid grid-cols-7 gap-1.5 sm:gap-2">
+      <div className="mt-4 grid grid-cols-7 gap-1.5 sm:gap-2 xl:gap-2.5">
         {monthDays.map((day) => {
           const availability = availabilityByDate.get(day.iso);
           const isAvailable =
@@ -109,7 +109,7 @@ export function AppointmentCalendar({
               key={day.iso}
               type="button"
               className={cn(
-                "group relative min-h-[4rem] rounded-[1rem] border px-1.5 py-2.5 text-left sm:min-h-[4.35rem] sm:rounded-[1.1rem] sm:px-2 sm:py-3",
+                "group relative min-h-[4rem] rounded-[1rem] border px-1.5 py-2.5 text-left sm:min-h-[4.35rem] sm:rounded-[1.1rem] sm:px-2 sm:py-3 xl:min-h-[4.7rem] xl:px-2.5 xl:py-3.5",
                 !day.isCurrentMonth &&
                   "cursor-default border-transparent bg-transparent text-muted/35",
                 day.isCurrentMonth &&

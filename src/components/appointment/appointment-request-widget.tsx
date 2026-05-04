@@ -318,7 +318,7 @@ export function AppointmentRequestWidget() {
             Cargando disponibilidad...
           </div>
         ) : (
-          <div className="mt-6 grid gap-4 sm:gap-5 xl:grid-cols-[1.08fr_0.92fr]">
+          <div className="mt-6 grid gap-4 sm:gap-5 min-[1400px]:grid-cols-[minmax(26rem,1.08fr)_minmax(19rem,0.92fr)]">
             <AppointmentCalendar
               month={visibleMonth}
               selectedDate={selectedDate}
@@ -334,7 +334,7 @@ export function AppointmentRequestWidget() {
               onSelectDate={handleSelectDate}
             />
 
-            <div className="space-y-4 sm:space-y-5">
+            <div className="grid gap-4 sm:gap-5 lg:grid-cols-2 min-[1400px]:grid-cols-1">
               <AppointmentTimeSlots
                 activeDate={selectedDate}
                 availability={activeAvailability}
@@ -440,7 +440,7 @@ export function AppointmentRequestWidget() {
 
             <fieldset className="block text-sm font-medium text-foreground">
               <legend>¿Tienes ya el diseño pensado? *</legend>
-              <div className="mt-2 grid gap-2 xl:grid-cols-3">
+              <div className="mt-2 grid gap-2 sm:grid-cols-2 min-[1400px]:grid-cols-3">
                 {[
                   { value: "yes", label: "Sí" },
                   { value: "no", label: "No" },
@@ -500,10 +500,10 @@ export function AppointmentRequestWidget() {
             {appointmentConfig.privacyNote}
           </p>
 
-          <div className="mt-6 flex flex-col gap-3 xl:flex-row xl:items-center">
+          <div className="mt-6 flex flex-col gap-3 min-[1400px]:flex-row min-[1400px]:items-center">
             <button
               type="submit"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-transparent bg-foreground px-6 py-3 text-sm font-semibold tracking-[0.02em] text-warm-white shadow-[0_12px_30px_rgba(87,71,71,0.06)] hover:-translate-y-0.5 hover:bg-[#2b2929] hover:shadow-[0_18px_36px_rgba(87,71,71,0.1)] disabled:cursor-not-allowed disabled:opacity-70 xl:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-transparent bg-foreground px-6 py-3 text-sm font-semibold tracking-[0.02em] text-warm-white shadow-[0_12px_30px_rgba(87,71,71,0.06)] hover:-translate-y-0.5 hover:bg-[#2b2929] hover:shadow-[0_18px_36px_rgba(87,71,71,0.1)] disabled:cursor-not-allowed disabled:opacity-70 min-[1400px]:w-auto"
               disabled={isSubmitting || availabilityLoading}
             >
               {isSubmitting ? "Enviando..." : appointmentConfig.submitLabel}
